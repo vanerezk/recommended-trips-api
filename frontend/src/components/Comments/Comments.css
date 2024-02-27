@@ -1,0 +1,21 @@
+section>div>div>h4 {
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.comments{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    border-top: 1px solid #dee2e6;
+    padding: 10px;
+    justify-content: center;
+}
+
+.form-group>h4{
+    margin-top:20px;
+    font-size: 20px;
+    width: 500px;
+}

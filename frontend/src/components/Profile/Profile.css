@@ -1,0 +1,42 @@
+body {
+font-family: 'Roboto', sans-serif;
+    
+}
+
+.profile-header {
+    transform: translateY(5rem);
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .recommendation-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+}
+
+@media (min-width: 768px) {
+    .recommendation-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+}
+
+.fotoperfil {
+    width: 150px;
+    height: 150px;
+    
+    object-fit: cover;
+}
+
+
+
+
+
+

@@ -1,0 +1,577 @@
+{
+	"info": {
+		"_postman_id": "43f801e9-f976-4114-8a5d-4be70cdfe79e",
+		"name": "Viajes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31697433"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"rezkvane@gmail.com\",\r\n    \"password\": \"angelpesadilla1\",\r\n    \"nickName\": \"pruebagafos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testpostman@gmail.com\",\r\n    \"password\": \"testpostman1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gestionar foto perfil",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibmlja05hbWUiOiJ2YW5lcmV6ayIsImlhdCI6MTcwNjExOTA1OSwiZXhwIjoxNzA2NzIzODU5fQ.EaAnhlpt-jk2MAc7M3VqtncALqqLeMv4ZuEi3guko0c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "WhatsApp Image 2023-07-04 at 16.00.34.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/2/photo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"2",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gestionar perfil",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibmlja05hbWUiOiJhbmdlbGl0byIsImlhdCI6MTcwNTA5MTE4OCwiZXhwIjoxNzA1Njk1OTg4fQ.IO9JZL7L80hzjI2klidSzIW4VW2Sh2R_3yaciAnOjew",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nickname\": \"gafo\",\r\n  \"email\": \"new_gafoexample.com\",\r\n  \"currentPassword\": \"angelpesao1\",\r\n  \"newPassword\": \"new_password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Perfil loggeado",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibmlja05hbWUiOiJwcnVlYmFhZm9zIiwiaWF0IjoxNzA2MDIwNDE5LCJleHAiOjE3MDY2MjUyMTl9.ujUZZrzg60YTFY76AOHA4okx-uoiaTyCXzGuLW2pgKU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recommendations",
+			"item": [
+				{
+					"name": "Crear recomendacion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJ2YW5lcmV6ayIsImlhdCI6MTcwNzEyNzg3OCwiZXhwIjoxNzA3NzMyNjc4fQ.j3cAqoKChGSeNd4R6y6OpECGfKSdVxBIlKQV2yG76TY",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"PASKD12312ASP\",\r\n  \"category\": \"plad\",\r\n  \"description\": \"asd123asdasectetur laborum facere expeditsss.\",\r\n  \"country\": 1,\r\n  \"lean_in\": \"#playa #nuevo\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/create-recommendation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"create-recommendation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Imagen recomendacion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibmlja05hbWUiOiJHQUZBIiwiaWF0IjoxNzAyNzUzNTU1LCJleHAiOjE3MDMzNTgzNTV9.9eu9N7O8EfrB5zD1-wBBKkWE8a8VVTAdF-MYtA7IKgY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"description": "imagen de discord",
+									"type": "file",
+									"src": "/C:/Users/Vanessa/Desktop/discord.png"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/recommendations/2/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"2",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar recomendacion",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJ2YW5lcmV6ayIsImlhdCI6MTcwNzIyNzM4MiwiZXhwIjoxNzA3ODMyMTgyfQ.xYgEuieRQYsaVL17aKCsfpn2IXJueJpVgb8t_48MdbU",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "jsasjjsjdas",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Beach",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "6",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "ksadnjakasda",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "abstract-geometric-computer-wallpaper-white-border-connecting-dots-digital-technology-vector-design.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/edit-recommendations/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"edit-recommendations",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar recomendacion",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJnYWZhIiwiaWF0IjoxNzAyNTA5MzE5LCJleHAiOjE3MDMxMTQxMTl9.OaVUAszTCWfbhC4u1p_vgKghsdIbE95B4MPECrD9sDw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/recommendations/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Todas las recomendaciones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJwcnVlYmFnYWZvcyIsImlhdCI6MTcwNTQxNDE2OSwiZXhwIjoxNzA2MDE4OTY5fQ.lNfTYae8pHfgTZ2lTAmlnh162FAkcLQxFw4T7ZBCBWg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/recommendations/?recommendationId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								""
+							],
+							"query": [
+								{
+									"key": "location",
+									"value": "spain",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "locationId",
+									"value": "212",
+									"disabled": true
+								},
+								{
+									"key": "recommendationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear comentario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJURVNUIiwiaWF0IjoxNzAyNjcwMDQ5LCJleHAiOjE3MDMyNzQ4NDl9.awOPVofEnC5c0Bc7qbwfwX-5PJm2JZNCCZsvJ_wy5vI",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"tercer comentario gafa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/recommendations/1/comentarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"1",
+								"comentarios"
+							],
+							"query": [
+								{
+									"key": "recommendationId",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Poner like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJ2YW5lcmV6ayIsImlhdCI6MTcwNzI0MzgyNSwiZXhwIjoxNzA3ODQ4NjI1fQ.4jyJVrODwbXyT5F79q79UAP3W8abkuEiB9FAWzF-1NU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/recommendations/1/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar like",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJHQUZPIiwiaWF0IjoxNzAyNzU0NDcyLCJleHAiOjE3MDMzNTkyNzJ9.Nhdoygh48YrETTOUfUgi1Zsj5_HzY7BhQqPUc_AdVPY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/recommendations/1/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Comentario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmlja05hbWUiOiJhbmdlbGl0bzIiLCJpYXQiOjE3MDUzNDkzMzMsImV4cCI6MTcwNTk1NDEzM30.femdU9-4I5H6a8RT85pKXkhyRd4bBGEUegW0Yl7Lv6E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/recommendations/1/comentarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"recommendations",
+								"1",
+								"comentarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Paises",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "getFoto",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibmlja05hbWUiOiJwcnVlYmFhZnMiLCJpYXQiOjE3MDY2MzcwMTYsImV4cCI6MTcwNzI0MTgxNn0._xTFTHtETQALbQlydhW0FDLEv0bBG512XSXgZmLQQsg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/photos/a5b77511-4ef1-49c9-b72a-47d5d4422619.png",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"photos",
+						"a5b77511-4ef1-49c9-b72a-47d5d4422619.png"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
