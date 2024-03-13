@@ -177,4 +177,20 @@ router.patch(
   })
 );
 
+//! GET USER PROFILE BY ID
+
+router.get(
+  "/profile/:id",
+  authMiddleware,
+  loggedInGuard,
+  wrapWithCatch(async (req, res) => {
+    const { id } = req.params;
+
+    const [[user]] = await db.execute("SELECT * FROM users WHERE id = ?", [id]);
+
+    sendOK(res, {
+      user,
+    });
+  })
+);
 export default router;

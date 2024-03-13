@@ -50,6 +50,25 @@ export const getMyUserDataService = async ({ token }) => {
   return json.user;
 };
 
+export const getAnotherUserDataService = async ({ token, id }) => {
+  const response = await fetch(
+    import.meta.env.VITE_BACKEND + `/profile/${id}`,
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json.user;
+};
+
 export const getRecommendationsService = async () => {
   const response = await fetch(
     import.meta.env.VITE_BACKEND + "/recommendations"
@@ -83,6 +102,32 @@ export const getRecommendationsByCategoryService = async () => {
   const id = window.location.search.split("/?category=").pop();
   const response = await fetch(
     import.meta.env.VITE_BACKEND + `/recommendations/${id}`
+  );
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+
+  return json;
+};
+
+export const getUserProfileService = async () => {
+  const id = window.location.pathname.split("/").pop();
+  const token = localStorage.getItem("token");
+
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  };
+
+  const response = await fetch(
+    import.meta.env.VITE_BACKEND + `/profile/${id}`,
+    options
   );
 
   const json = await response.json();

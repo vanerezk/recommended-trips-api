@@ -90,18 +90,25 @@ const EditReco = () => {
             aria-label="Default select example"
             value={category}
             name="category"
-            id="category">
-            onChange={(e) => setCategory(e.target.value)}
-            <option
-              key={category.id}
-              value={category.id}>
-              {category.category}
-            </option>
+            id="category"
+            required
+            onChange={(e) => setCategory(e.target.value)}>
+            {categories.map((category) => (
+              <option
+                key={category.id}
+                value={category.id}>
+                {category.category}
+              </option>
+            ))}
           </Form.Select>
           <Form.Control
             as="textarea"
             rows={3}
             className="mb-3"
+            placeholder="Enter new description"
+            required
+            minLength={8}
+            maxLength={750}
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             name="description"

@@ -6,8 +6,9 @@ import {
 import useSingleRecommendation from "../../hooks/useSingleRecommendation";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Comments.css";
+import { FaTrash } from "react-icons/fa";
 
 const Comments = ({ recommendationId }) => {
   const { recommendation, error, loading } =
@@ -32,6 +33,7 @@ const Comments = ({ recommendationId }) => {
         user.id,
         recommendation.recommendation.id
       );
+
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -62,7 +64,7 @@ const Comments = ({ recommendationId }) => {
               <div
                 key={comment.id}
                 className="comments">
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center w-100">
                   <img
                     src={
                       !comment.photo
@@ -74,27 +76,27 @@ const Comments = ({ recommendationId }) => {
                     width="40"
                     height="40"
                   />
+                  <Link to={`/profile/${comment.userId}`}>
+                    <p className="m-0 ms-2 ">{comment.nickName}:</p>
+                  </Link>
 
-                  <p className="m-0 ms-2 ">
-                    {comment.nickName}: {comment.message}
-                  </p>
+                  <p className="m-0 ms-2">{comment.message}</p>
                 </div>
 
                 {user.nickName === comment.nickName && (
                   <button
-                    className="btn btn-danger btn-sm rounded-pill ms-auto"
+                    className="btn btn-danger ms-auto d-flex align-items-center p-2"
                     type="button"
                     onClick={() => handleDelete(comment.id)}>
-                    Delete
+                    <FaTrash />
                   </button>
                 )}
               </div>
             ))}
             <div className="w-100">
-              <form id="algin-form">
-                <div className="form-group">
-                  <h4>Leave a comment</h4>
-                  <label>Message</label>
+              <form>
+                <div className="form-group ">
+                  <label>Tell us what you think!</label>
                   <textarea
                     name="msg"
                     cols="30"

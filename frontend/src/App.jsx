@@ -13,6 +13,8 @@ import Footer from "./components/Footer/Footer";
 import CreateRecommendation from "./pages/createRecommendation/CreateRecommendation";
 import EditRecommendation from "./pages/editRecommendation/EditRecommendation";
 import EditProfile from "./pages/editProfile/EditProfile";
+import AnotherUserProfile from "./components/AnotherUserProfile/AnotherUserProfile";
+
 function App() {
   return (
     <main className="App">
@@ -34,6 +36,9 @@ function App() {
           path="/user/:id"
           element={<EditProfile />}
         />
+        <Route
+          path="/profile/:id"
+          element={<AnotherUserProfile />}></Route>
         <Route
           path="/login"
           element={<Login />}

@@ -15,6 +15,8 @@ import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/esm/Button";
+import "./ExpandedRecommendation.css";
+import Modal from "react-modal";
 
 const ExpandedRecommendation = ({ recommendationId }) => {
   const { recommendation, loading } = useSingleRecommendation(recommendationId);
@@ -22,6 +24,8 @@ const ExpandedRecommendation = ({ recommendationId }) => {
   const [imageFile, setImageFile] = useState([]);
   const Navigate = useNavigate();
   const [showUpload, setShowUpload] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const handleUploadClick = () => {
     setShowUpload((prevShowUpload) => !prevShowUpload);
@@ -72,11 +76,21 @@ const ExpandedRecommendation = ({ recommendationId }) => {
     }
   };
 
+  const openModal = (image) => {
+    setModalIsOpen(true);
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImage("");
+  };
+
   return (
     <div className="fondo">
       <Card
-        className="mt-5  bg-white"
-        style={{ width: "550px", height: "auto", margin: "auto" }}>
+        className="mt-5 bg-white text-center"
+        style={{ width: "700px", height: "auto", margin: "auto" }}>
         <Card.Title
           className="text-center text-primary "
           style={{ fontSize: "25px", marginTop: "50px", marginBottom: "35px" }}>
@@ -95,18 +109,20 @@ const ExpandedRecommendation = ({ recommendationId }) => {
           </svg>
           <i style={{ marginRight: "5px", fontSize: "16px" }}>{pais}</i>
         </div>
-        <Card.Body>
+        <Card.Body className="text-center">
           <Carousel
             slide={false}
-            style={{ width: "400px", height: "400px", margin: "auto" }}>
+            style={{ width: "500px", height: "500px", margin: "auto" }}>
             {photos.map((photo) => (
-              <Carousel.Item key={photo}>
+              <Carousel.Item
+                key={photo}
+                onClick={() => openModal(photo)}>
                 <img
                   src={import.meta.env.VITE_BACKEND + `/photos/${photo}`}
                   alt="Recommendation"
                   style={{
-                    height: "400px",
-                    width: "400px",
+                    height: "500px",
+                    width: "500px",
                     objectFit: "cover",
                     borderRadius: "10px",
                   }}
@@ -115,24 +131,45 @@ const ExpandedRecommendation = ({ recommendationId }) => {
             ))}
           </Carousel>
           <Card.Text
-            className="text-center"
-            style={{ marginTop: "20px" }}>
+            style={{
+              fontStyle: "italic",
+              width: "500px",
+              fontSize: "18px",
+              margin: "40px auto",
+              textAlign: "justify",
+            }}>
             {description}
           </Card.Text>
-
           <Card.Text
             className="text-center"
-            style={{ fontStyle: "italic", marginTop: "20px", width: "500px" }}>
+            style={{
+              fontStyle: "italic",
+              width: "500px",
+              fontSize: "18px",
+              margin: "40px auto",
+              textAlign: "justify",
+            }}>
             {lean_in}
           </Card.Text>
           <Card.Text
             className="text-center"
-            style={{ marginTop: "20px", width: "500px" }}>
+            style={{
+              fontStyle: "italic",
+              width: "500px",
+              fontSize: "18px",
+              margin: "40px auto",
+              textAlign: "justify",
+            }}>
             Posted by: {nickName}{" "}
           </Card.Text>
           <Card.Subtitle
             className="text-center d-flex justify-content-center align-items-center"
-            style={{ marginTop: "20px", width: "500px", gap: "10px" }}>
+            style={{
+              marginTop: "20px",
+              width: "500px",
+              margin: "auto",
+              gap: "20px",
+            }}>
             {user && user.nickName === nickName ? (
               <>
                 <button
@@ -231,6 +268,25 @@ const ExpandedRecommendation = ({ recommendationId }) => {
           )}
         </div>
       </Card>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Image Modal"
+        className="Modal"
+        overlayClassName="Overlay">
+        <img
+          src={import.meta.env.VITE_BACKEND + `/photos/${selectedImage}`}
+          alt="Full Size Image"
+        />
+        <Button
+          onClick={closeModal}
+          className="close-button"
+          aria-label="Close Modal"
+          variant="danger"
+          style={{ position: "absolute", top: "10px", right: "10px" }}>
+          X
+        </Button>
+      </Modal>
     </div>
   );
 };

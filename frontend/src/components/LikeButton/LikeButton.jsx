@@ -8,6 +8,7 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, Navigate } from "react-router-dom";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 function LikeButton() {
   const { token, user } = useContext(AuthContext);
@@ -34,29 +35,25 @@ function LikeButton() {
     return <div>Error: {error.message}</div>;
   }
 
-  const handleLike = async () => {
+  const handleLikeDislike = async () => {
     try {
-      await likeRecommendation(
-        token,
-        user.id,
-        recommendation.recommendation.id
-      );
-      setUserHasLiked(true);
-      setLikeCount(likeCount + 1);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDislike = async () => {
-    try {
-      await dislikeRecommendation(
-        token,
-        user.id,
-        recommendation.recommendation.id
-      );
-      setUserHasLiked(false);
-      setLikeCount(likeCount - 1);
+      if (userHasLiked) {
+        await dislikeRecommendation(
+          token,
+          user.id,
+          recommendation.recommendation.id
+        );
+        setUserHasLiked(false);
+        setLikeCount(likeCount - 1);
+      } else {
+        await likeRecommendation(
+          token,
+          user.id,
+          recommendation.recommendation.id
+        );
+        setUserHasLiked(true);
+        setLikeCount(likeCount + 1);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -65,25 +62,26 @@ function LikeButton() {
   return (
     <div>
       {user ? (
-        <div>
-          <Button
-            variant="primary"
-            onClick={handleLike}
-            style={{ marginRight: "10px" }}>
-            Like ({likeCount})
-          </Button>
-          <Button
-            variant="danger"
-            onClick={handleDislike}>
-            Dislike
-          </Button>
-        </div>
+        <Button
+          variant={userHasLiked ? "danger" : "primary"}
+          onClick={handleLikeDislike}
+          style={{ display: "flex", alignItems: "center", padding: "10px" }}>
+          {userHasLiked ? (
+            <>
+              <FaThumbsDown />
+            </>
+          ) : (
+            <>
+              <FaThumbsUp />
+            </>
+          )}
+        </Button>
       ) : (
         <Link to="/login">
           <Button
             variant="primary"
             onClick={() => Navigate("/login")}>
-            Like
+            <FaThumbsUp /> Like
           </Button>
         </Link>
       )}
@@ -92,4 +90,3 @@ function LikeButton() {
 }
 
 export default LikeButton;
-

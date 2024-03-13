@@ -7,6 +7,8 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const Recommendation = ({ recommendation }) => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Recommendation = ({ recommendation }) => {
   if (loading) {
     return <p>Loading recommendations...</p>;
   }
+
   if (error) {
     return <p>Error: {error.message}</p>;
   }
@@ -26,32 +29,37 @@ const Recommendation = ({ recommendation }) => {
   };
 
   return (
-    <Container
-      className="my-5 d-flex justify-content-center align-items-center h-100 w-100"
-      fluid>
+    <Container className="my-5 d-flex justify-content-center align-items-center h-100 w-100">
       <Row className="justify-content-center">
         <Col className="d-flex justify-content-center">
           <Card>
+            <Card.Title
+              className="text-center"
+              style={{ marginTop: "20px" }}>
+              <h2 style={{ fontSize: "25px" }}>{recommendation.title}</h2>
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                style={{ marginRight: "5px" }}
+              />{" "}
+              {recommendation.likeCount}
+            </Card.Title>
+
             <Carousel
               fade
               interval={null}
               variant="dark"
-              style={{
-                width: "auto",
-                height: "250px",
-                objectPosition: "center",
-                objectFit: "cover",
-                overflow: "hidden",
-              }}>
+              slide={false}
+              style={{ height: "400px", width: "600px" }}>
               {photos.length > 0 ? (
                 photos.map((photo) => (
                   <Carousel.Item key={photo}>
                     <img
-                      className="d-block w-100"
+                      className="d-block w-100 img-thumbnail"
                       style={{
                         objectFit: "cover",
                         objectPosition: "center",
-                        height: "250px",
+                        height: "400px",
+                        width: "400px",
                       }}
                       src={import.meta.env.VITE_BACKEND + `/photos/${photo}`}
                       alt="Reco1"
@@ -63,19 +71,23 @@ const Recommendation = ({ recommendation }) => {
                   <img
                     className="d-block w-100 img-thumbnail "
                     src="https://via.placeholder.com/300"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "center",
+                      height: "250px",
+                      width: "250px",
+                    }}
                     alt="Default"
                   />
                 </Carousel.Item>
               )}
             </Carousel>
             <Card.Body className="text-center">
-              <Card.Text className="mb-1 h5">{user}</Card.Text>
               <Button
                 onClick={goToRecommendation}
                 variant="primary"
-                className="w-50 mt-3 mb-3">
-                Ver
+                className="w-50 mb-3 mt-3">
+                See more!
               </Button>
             </Card.Body>
           </Card>

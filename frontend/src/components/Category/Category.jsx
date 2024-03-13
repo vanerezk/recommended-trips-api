@@ -24,13 +24,11 @@ function Category() {
     loadingCategories();
   }, []);
 
-  const handleSearch = async (e) => {
-    if (e) {
-      e.preventDefault();
-    }
+  const handleSearch = async (e, categoryId) => {
+    e.preventDefault();
     try {
-      const data = await getRecommendationsByCategoryService(category);
-      navigate(`/recommendations/?category=${category}`);
+      const data = await getRecommendationsByCategoryService(categoryId);
+      navigate(`/recommendations/?category=${categoryId}`);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +58,7 @@ function Category() {
               <div className="category-details">
                 <h3
                   className="text-primary"
-                  onClick={() => handleSearch(category.id)}>
+                  onClick={(e) => handleSearch(e, category.id)}>
                   {category.category}
                 </h3>
               </div>
@@ -74,7 +72,8 @@ function Category() {
         style={{ width: "100%", margin: "0 auto" }}>
         <Carousel
           variant="dark"
-          slide={false}>
+          slide={false}
+          interval={null}>
           {categories.slice(1).map((category) => (
             <Carousel.Item key={category.id}>
               <Card id="categorycarousel">
